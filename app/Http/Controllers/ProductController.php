@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create', ['categories' => $categories]);
     }
 
     /**
@@ -29,7 +31,16 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $product = Product::create([
+            'product_name' => $request->product_name,
+            'category'=> $request->category,
+            'quantity_of_product'=> $request->quantity_of_product,
+            'product_characteristics'=> $request->product_characteristics,
+            'description'=> $request->description,
+            'users_raiting' => $request->users_raiting,
+        ]);
+
+        return response()->back()->with($product);
     }
 
     /**

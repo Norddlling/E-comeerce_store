@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,12 +31,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
-    Route::get('product/create', function() {
-        return view('product.create');
-    });
-});
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('product/create', [ProductController::class, 'create'])->name('roduct.create');
+    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
 });
