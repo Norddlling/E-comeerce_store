@@ -19,7 +19,14 @@
     <div>
         @foreach ( $products as  $product )
             <div>
-                {{ $product->product_name }}
+                <div>
+                    <img 
+                        src = "{{ '/storage/products_images/'.$product->product_image }}" 
+                        alt = "{{ $product->product_name }} image" 
+                        width = "300"
+                    />
+                    {{ $product->product_name }}
+                </div>
             </div>
         @endforeach
     </div>

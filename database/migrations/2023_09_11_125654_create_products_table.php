@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity_of_product');
             $table->text('product_characteristics');
             $table->text('description');
+            $table->string('product_image');
             $table->enum('users_raiting', [0, 1, 2, 3, 4, 5,])->default(0);
             $table->timestamps();
         });
