@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -38,9 +39,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $category)
     {
-        //
+        $products = Product::all();
+        return view('product.show', ['category' => $category, 'products' => $products]);
     }
 
     /**

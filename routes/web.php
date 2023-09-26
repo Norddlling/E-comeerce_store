@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('product', ProductController::class);
-    Route::resource('category', CategoryController::class);
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::patch('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::patch('/category/store', [ProductController::class, 'store'])->name('category.store');
 });
+
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::get('/products/{category}', [CategoryController::class, 'show'])->name('category.show');

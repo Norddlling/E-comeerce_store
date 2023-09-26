@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        $products = Product::all();
+        return view('product.index', ['products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -40,13 +42,13 @@ class ProductController extends Controller
             'users_raiting' => $request->users_raiting,
         ]);
 
-        return response()->back()->with($product);
+        return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Category $product)
     {
         //
     }
