@@ -30,10 +30,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $categories = Category::create([
-            'category'=> $request->category,
+            'category'=> $request->created_category,
         ]);
 
-        return back();
+        return redirect()->back();
     }
 
     /**

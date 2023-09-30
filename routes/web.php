@@ -33,8 +33,8 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::patch('/product/store', [ProductController::class, 'store'])->name('product.store');
-    Route::patch('/category/store', [ProductController::class, 'store'])->name('category.store');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');

@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action={{ route('product.store') }}>
+    <form method="POST" action={{ route('product.store') }} enctype="multipart/form-data" id="create_product_form">
         @csrf
         <label for="product_name">
             product_name
@@ -38,22 +38,28 @@
             <input type='text' id="description" name="description"/>
         </label>
         <br/>
+        <label for="product_image">
+            product_image
+            <input type="file" id="product_image" name="product_image" accept="image/*"/>
+        </label>
+        <br/>
         <label for="users_raiting">
             users_raiting
             <input type="number" id="users_raiting" name="users_raiting"/>
         </label>
         <br/>
-        <input type="submit"/>
+        <input type="submit" formaction={{ route('product.store') }} form="create_product_form"/>
     </form>
 
-    <form method="POST" action={{ route('category.store') }}>
+    <form method="POST" action={{ route('category.store') }} id="create_category_form">
         @csrf
+
         <label for="category">
             category
-            <input type='text' id="category" name="category"/>
+            <input type='text' id="created_category" name="created_category"/>
         </label>
         <br/>
-        <input type="submit"/>
+        <input type="submit" formaction={{ route('category.store') }} form="create_category_form"/>
     </form>
     
 </body>
