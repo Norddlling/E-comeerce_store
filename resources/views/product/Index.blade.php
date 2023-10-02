@@ -19,7 +19,7 @@
             <div>
                 @foreach ( $products as  $product )
                     <div>
-                        <div>
+                        <div onclick="window.location='{{ route('product.show', $product->id) }}'">
                             <img 
                                 src = "{{ '/storage/products_images/'.$product->product_image }}" 
                                 alt = "{{ $product->product_name }} image" 
@@ -27,13 +27,17 @@
                             />
                             {{ $product->product_name }}
                         </div>
-                        @if (auth()->user()->role === 'admin')
-                            <form action={{ route('product.destroy', $product->id) }} method="POST">
-                                @method('delete')
-                                @csrf
-                                <input type="submit"/>
-                            </form>
-                        @endif
+                        @auth
+                            @if (auth()->user()->role === 'admin')
+                                <form action={{ route('product.destroy', $product->id) }} method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <input type="submit"/>
+                                </form>
+                            @endif
+                        @else
+                            <div></div>
+                        @endauth
                     </div>
                 @endforeach
             </div>

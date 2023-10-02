@@ -14,6 +14,11 @@
             @foreach ($products as $product)
                 @if ($product->category === $category)
                     <div>
+                        <img 
+                            src = "{{ '/storage/products_images/'.$product->product_image }}" 
+                            alt = "{{ $product->product_name }} image" 
+                            width = "300"
+                        />
                         {{ $product->product_name }}
                     </div>
                 @endif
