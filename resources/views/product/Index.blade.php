@@ -19,7 +19,7 @@
             <div>
                 @foreach ( $products as  $product )
                     <div>
-                        <div onclick="window.location='{{ route('product.show', $product->id) }}'">
+                        <div onclick="window.location='{{ route('product.show', $product->product_name) }}'">
                             <img 
                                 src = "{{ '/storage/products_images/'.$product->product_image }}" 
                                 alt = "{{ $product->product_name }} image" 

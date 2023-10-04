@@ -40,4 +40,4 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{category}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/product/{product:product_name}', [ProductController::class, 'show'])->name('product.show');
