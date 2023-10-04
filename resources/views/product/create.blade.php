@@ -49,7 +49,7 @@
                 <input type="number" id="users_raiting" name="users_raiting"/>
             </label>
             <br/>
-            <input type="submit" formaction={{ route('product.store') }} form="create_product_form"/>
+            <input type="submit" form="create_product_form"/>
         </form>
 
         <form method="POST" action={{ route('category.store') }} id="create_category_form">
@@ -60,7 +60,7 @@
                 <input type='text' id="created_category" name="created_category"/>
             </label>
             <br/>
-            <input type="submit" formaction={{ route('category.store') }} form="create_category_form"/>
+            <input type="submit" form="create_category_form"/>
         </form>
     </x-app-layout>
     </body>

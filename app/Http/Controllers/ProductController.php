@@ -68,7 +68,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
@@ -76,7 +77,27 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        /*$newProduct = Product::where('id', $request->id)*/$product->update([
+            'product_name' => $request->product_name,
+            'category' => $request->category,
+            'quantity_of_product' => $request->quantity_of_product,
+            'product_characteristics' => $request->product_characteristics,
+            'description'=> $request->description,
+            'users_raiting' => $request->users_raiting,
+        ]);
+        if ($request->file('product_image')) {
+            Storage::disk('public')->delete("/products_images/$product->product_image");
+            $ext = $request->file('product_image')->extension();
+            $filename = Str::random(25);
+            $path = "/products_images/$filename.$ext";
+            $file = file_get_contents($request->file('product_image'));
+            Storage::disk('public')->put($path, $file);
+            $updatedProduct = Product::where('id', $request->id)->update([
+                'product_image' => "$filename.$ext",
+            ]);
+        }
+
+        return redirect()->route('product.index');
     }
 
     /**
