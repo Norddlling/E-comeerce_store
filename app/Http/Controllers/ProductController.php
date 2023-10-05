@@ -77,7 +77,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        /*$newProduct = Product::where('id', $request->id)*/$product->update([
+        $product->update([
             'product_name' => $request->product_name,
             'category' => $request->category,
             'quantity_of_product' => $request->quantity_of_product,
@@ -92,7 +92,7 @@ class ProductController extends Controller
             $path = "/products_images/$filename.$ext";
             $file = file_get_contents($request->file('product_image'));
             Storage::disk('public')->put($path, $file);
-            $updatedProduct = Product::where('id', $request->id)->update([
+            $product->update([
                 'product_image' => "$filename.$ext",
             ]);
         }
@@ -106,7 +106,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         Storage::disk('public')->delete("/products_images/$product->product_image");
-        $deleteProduct = Product::where('id', $product->id)->delete();
+        $product->delete();
         return redirect(route('product.index'));
     }
 }

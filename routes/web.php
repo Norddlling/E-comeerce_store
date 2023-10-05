@@ -33,12 +33,12 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::get('/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/edit/{product:product_name}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-    Route::patch('/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/product', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::patch('/product/update/{product:product_name}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-    Route::patch('/category', [CategoryController::class, 'update'])->name('category.update');
+    Route::patch('/category/edit/{category}', [CategoryController::class, 'update'])->name('category.update');
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');

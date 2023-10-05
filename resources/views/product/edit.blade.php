@@ -15,7 +15,7 @@
                     width = "300"
                 />
             </div>
-            <form method="POST" action={{ route('product.update', ['product' => $product->id]) }} enctype="multipart/form-data">
+            <form method="POST" action={{ route('product.update', ['product' => $product->product_name]) }} enctype="multipart/form-data">
                 @csrf
                 @method('patch')
                 <label for="product_name">
