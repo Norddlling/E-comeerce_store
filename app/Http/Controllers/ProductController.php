@@ -52,7 +52,7 @@ class ProductController extends Controller
             'users_raiting' => $request->users_raiting,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['product_status_message' => "Product $request->product_name created"]);
     }
 
     /**
@@ -97,7 +97,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with(['product_status_message' => "Product $request->product_name updated"]);;
     }
 
     /**
@@ -107,6 +107,6 @@ class ProductController extends Controller
     {
         Storage::disk('public')->delete("/products_images/$product->product_image");
         $product->delete();
-        return redirect(route('product.index'));
+        return redirect(route('product.index'))->with(['product_status_message' => "Product $product->product_name deleted"]);;
     }
 }

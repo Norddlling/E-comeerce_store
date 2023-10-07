@@ -8,6 +8,7 @@
     </head>
     <body>
         <x-app-layout>
+            <div>{{ session('category_status_message') }}</div>
             <div>
                 <img 
                     src = "{{ '/storage/products_images/'.$product->product_image }}" 
@@ -26,9 +27,9 @@
                 <label for="category">
                     category
                     <select id="category" name="category">
-                        <option value={{ $product->category }} selected>{{ $product->category }}</option>
+                        <option value="{{ $product->category }}" selected>{{ $product->category }}</option>
                         @foreach ( $categories as  $category )
-                            <option value={{ $category->category }}>{{ $category->category }}</option>
+                            <option value="{{ $category->category }}">{{ $category->category }}</option>
                         @endforeach
                     </select>
                 </label>
@@ -56,6 +57,25 @@
                 <label for="users_raiting">
                     users_raiting
                     <input type="number" id="users_raiting" name="users_raiting" value="{{ $product->users_raiting }}"/>
+                </label>
+                <br/>
+                <input type="submit"/>
+            </form>
+            <form method="POST" action={{ route('category.update', ['category' => $category->id]) }}>
+                @csrf
+                @method('PATCH')
+                <label for="edit_category">
+                    Change category name
+                    <input type="text" name="changed_category" id="changed_category" value=""/>
+                <select 
+                    id="edit_category" 
+                    name="edit_category"
+                    onchange="window.document.getElementById('changed_category').value = window.document.getElementById('edit_category').value"
+                >
+                    @foreach ( $categories as  $category )
+                        <option value="{{ $category->category }}" >{{ $category->category }}</option>
+                    @endforeach
+                </select>
                 </label>
                 <br/>
                 <input type="submit"/>

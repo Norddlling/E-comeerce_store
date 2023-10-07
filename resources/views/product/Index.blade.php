@@ -7,6 +7,16 @@
         <title>Document</title>
     </head>
     <body>
+            <div>{{ session('product_status_message') }}</div>
+            @auth
+                @if (auth()->user()->role === 'admin')
+                    <div>
+                        <button onclick="window.location='{{ route('product.create') }}'">
+                            Create product
+                        </button>
+                    </div>
+                @endif
+            @endauth
             <div>
                 @foreach ( $categories as  $category )
                     <div class="text-danger">
@@ -41,8 +51,6 @@
                                     <input type="submit" value="Delete"/>
                                 </form>
                             @endif
-                        @else
-                            <div></div>
                         @endauth
                     </div>
                 @endforeach

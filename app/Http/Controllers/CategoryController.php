@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Product;
 
 class CategoryController extends Controller
@@ -56,11 +57,18 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->update($request->validated());
+        $updatedCategory = Product::where('category', $request->edit_category)->update([
+            'category' => $request->changed_category
+        ]);
+        $category->update([
+            'category' => $request->changed_category
+        ]);
 
-        return redirect()->route('product.index');
+        return redirect()->back()->with([
+            'category_status_message' => "Category $request->edit_category was changed to $request->changed_category"
+        ]);
     }
 
     /**

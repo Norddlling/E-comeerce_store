@@ -22,7 +22,7 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product_name' => 'unique:App\Models\Product,product_name'
         ];
     }
 }
