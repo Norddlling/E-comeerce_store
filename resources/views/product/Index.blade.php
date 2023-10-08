@@ -27,6 +27,13 @@
                 @endforeach
             </div>
             <div>
+                <form action="{{ route('search') }}" method="GET">
+
+                    <input type="text" name="product_search" value=""/>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div>
                 @foreach ( $products as  $product )
                     <div>
                         <div onclick="window.location='{{ route('product.show', $product) }}'">
@@ -50,9 +57,9 @@
                                     @csrf
                                     <input type="submit" value="Delete"/>
                                 </form>
-                            @endif
+                             @endif
                         @endauth
-                    </div>
+                        </div>
                 @endforeach
             </div>
     </body>
