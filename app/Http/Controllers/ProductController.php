@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -108,16 +108,5 @@ class ProductController extends Controller
         Storage::disk('public')->delete("/products_images/$product->product_image");
         $product->delete();
         return redirect(route('product.index'))->with(['product_status_message' => "Product $product->product_name deleted"]);
-    }
-
-    public function search(Request $request)  
-    {
-        $categories = Category::all();
-        if($request->input('product_search')) {
-            $product_search = $request->input('product_search');
-            $products = Product::query()->where('product_name', 'LIKE',  "%{$product_search}%" )->get();
-            return view('product.search', ['products' => $products, 'categories' => $categories]);
-        } 
-        return redirect(route('product.index'));
     }
 }

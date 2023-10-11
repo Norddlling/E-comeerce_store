@@ -26,9 +26,9 @@
                 </div>
             @endforeach
         </div>
-        <form action="{{ route('search') }}" method="GET">
+        <form action="{{ route('search.searchProduct') }}" method="GET">
 
-            <input type="text" name="product_search" value=""/>
+            <input type="text" name="searched_product" value=""/>
             <button type="submit">Submit</button>
         </form>
         <div>

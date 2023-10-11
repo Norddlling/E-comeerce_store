@@ -8,6 +8,7 @@
 </head>
 <body>
     <div>
+        <div>{{ session('basket_status_message') }}</div>
         <div>
             <img 
                 src = "{{ '/storage/products_images/'.$product->product_image }}" 
@@ -22,7 +23,7 @@
             category: {{ $product->category }}
         </div>
         <div>
-            quantity_of_product: {{ $product->quantity_of_product }}
+            quantity_of_product: {{ $product->quantity_of_product }} available
         </div>
         <div>
             product_characteristics: {{ $product->product_characteristics }}
@@ -33,6 +34,18 @@
         <div>
             users_raiting: {{ $product->users_raiting }}
         </div>
+        <form method="POST" action="{{ route('basket.store', ['product' => $product]) }}">
+            @csrf
+            <input 
+                type="number" 
+                id="quantity_of_product_buying" 
+                name="quantity_of_product_buying" 
+                max="{{ $product->quantity_of_product }}" 
+                min="1" 
+                value="1"
+            />
+            <input type="submit"/>
+        </form>
     </div>
 </body>
 </html>
