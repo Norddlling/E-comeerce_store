@@ -47,13 +47,17 @@ class BasketController extends Controller
                     'basket_status_message' => "$product->product_name was added to basket"
                 ]);
             } else {
-                $basket = session('basket', []);
-                $basket[] = [
-                    'product_id' => $product->id, 
-                    'product_name' => $product->product_name,
-                    'quantity_of_product_buying' => $request->input('quantity_of_product_buying'),
-                ];
-                session(['basket' => $basket]);
+                $baskets = session('baskets', []);
+                if (array_key_exists($product->product_name, $baskets)) {
+                    $baskets[$product->product_name]['quantity_of_product_buying'] += $request->input('quantity_of_product_buying');
+                } else {
+                    $baskets[$product->product_name] = [
+                        'product_id' => $product->id, 
+                        'product_name' => $product->product_name,
+                        'quantity_of_product_buying' => $request->input('quantity_of_product_buying'),
+                    ];
+                }
+                session(['baskets' => $baskets]);
             }
             return redirect()->back()->with([
                 'basket_status_message' => "$product->product_name was added to basket"
@@ -94,7 +98,19 @@ class BasketController extends Controller
      */
     public function destroy(Basket $basket)
     {
-        $basket->delete();
-        return redirect()->back();
+        if(auth()->check()) {
+            $basket->delete();
+            return redirect()->back();
+        }
+    }
+
+    public function destroySession ($basket)
+    {
+        $baskets = session('baskets', []);
+        $updatedBasket = array_filter($baskets, function ($item) use ($basket) {
+            return $item['product_name'] !== $basket;
+        });
+        session(['baskets' => $updatedBasket]);
+        return back();
     }
 }

@@ -9,9 +9,18 @@
 <body>
     <div>
         <div>
-            @foreach(session('basket', []) as $basketItem)
-                <div>{{ $basketItem['product_name'] }}</div>
-            @endforeach
+            @if (session()->has('baskets'))
+                @foreach(session('baskets', []) as $basket)
+                    <div>{{ $basket['product_name'] }} Quantity: {{ $basket['quantity_of_product_buying'] }}</div>
+                    <form method="POST" action="{{ route('basket.destroySession', $basket['product_name']) }}">
+                        @csrf
+                        <input type="submit" value="Delete from basket"/>
+                    </form>
+                @endforeach
+            @else
+                <div>Basket is empty</div>
+            @endif
+
         </div>
         @foreach ($baskets as $basket)
             <div>

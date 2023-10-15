@@ -50,3 +50,4 @@ Route::get('/search/product', [SearchController::class, 'findProducts'])->name('
 Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::post('/basket/store/{product}', [BasketController::class, 'store'])->name('basket.store');
 Route::delete('/basket/delete/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy');
+Route::post('/session/{basket}', [BasketController::class, 'destroySession'])->name('basket.destroySession');
