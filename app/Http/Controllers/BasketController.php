@@ -14,7 +14,7 @@ class BasketController extends Controller
      */
     public function index()
     {
-        $baskets = Basket::all();
+        $baskets = Basket::where('user_id', auth()->id())->get();
         $products = Product::all();
         return view('basket.userBasket', ['baskets' => $baskets, 'products' => $products]);
     }
