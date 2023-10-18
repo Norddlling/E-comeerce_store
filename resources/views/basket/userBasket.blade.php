@@ -9,7 +9,7 @@
 <body>
     <div>
         <div>
-            @if (session()->has('baskets') || $baskets->count() > 0)
+            @if (count(session('baskets', [])) > 0/*session()->has('baskets')*/ || $baskets->count() > 0)
                 @if($baskets->count() > 0)
                     @auth
                         @foreach ($baskets as $basket)
@@ -36,7 +36,7 @@
                             </div>
                         @endforeach
                     @endauth
-                @elseif (session()->has('baskets') && $baskets->count() === 0)
+                @elseif (count(session('baskets', [])) > 0/*session()->has('baskets')*/ && $baskets->count() === 0)
                         @if (!auth()->user())
                             @foreach(session('baskets', []) as $sessionBasket)    
                                 <div>
