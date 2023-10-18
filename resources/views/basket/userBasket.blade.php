@@ -39,7 +39,22 @@
                 @elseif (session()->has('baskets') && $baskets->count() === 0)
                         @if (!auth()->user())
                             @foreach(session('baskets', []) as $sessionBasket)    
-                                <div>{{ $sessionBasket['product_name'] }} Quantity: {{ $sessionBasket['quantity_of_product_buying'] }}</div>
+                                <div>
+                                    {{ $sessionBasket['product_name'] }} 
+                                    <input
+                                        type="number"
+                                        name="quantity_of_products_in_sessionBasket"
+                                        min="1"
+                                        @foreach ($products as $product)
+                                            @if($product->product_name === $sessionBasket['product_name']) 
+                                                max="{{ $product->quantity_of_product }}"
+                                            @else 
+                                                max="1"                            
+                                            @endif
+                                        @endforeach
+                                        value="{{ $sessionBasket['quantity_of_product_buying'] }}"
+                                />
+                                </div>
                                 <form method="POST" action="{{ route('basket.destroySession', $sessionBasket['product_name']) }}">
                                     @csrf
                                     <input type="submit" value="Delete from basket"/>
