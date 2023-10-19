@@ -9,12 +9,12 @@
 <body>
     <div>
         <div>
-            @if (count(session('baskets', [])) > 0/*session()->has('baskets')*/ || $baskets->count() > 0)
+            @if (count(session('baskets', [])) > 0 || $baskets->count() > 0)
                 @if($baskets->count() > 0)
                     @auth
                         @foreach ($baskets as $basket)
                             <div>
-                                {{ $basket->product_name }}
+                                {{ $basket->product_name }} Price: {{ $basket->price }}
                                 <input
                                     type="number"
                                     name="quantity_of_products_in_basket"
@@ -36,11 +36,11 @@
                             </div>
                         @endforeach
                     @endauth
-                @elseif (count(session('baskets', [])) > 0/*session()->has('baskets')*/ && $baskets->count() === 0)
+                @elseif (count(session('baskets', [])) > 0 && $baskets->count() === 0)
                         @if (!auth()->user())
                             @foreach(session('baskets', []) as $sessionBasket)    
                                 <div>
-                                    {{ $sessionBasket['product_name'] }} 
+                                    {{ $sessionBasket['product_name'] }} Price: {{ $sessionBasket['price'] }}
                                     <input
                                         type="number"
                                         name="quantity_of_products_in_sessionBasket"

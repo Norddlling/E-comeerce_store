@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('product_name', 100)->unique();
             $table->string('category', 100);
             $table->integer('quantity_of_product');
+            $table->integer('price');
             $table->text('product_characteristics');
             $table->text('description');
             $table->string('product_image');

@@ -40,7 +40,9 @@
                             alt = "{{ $product->product_name }} image" 
                             width = "300"
                         />
-                        {{ $product->product_name }}
+                        <div>
+                            {{ $product->product_name }} Price: {{ $product->price }}
+                        </div>
                     </div>
                     @auth
                         @if (auth()->user()->role === 'admin')

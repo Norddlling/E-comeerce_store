@@ -45,7 +45,8 @@ class ProductController extends Controller
         $product = Product::create([
             'product_name' => $request->product_name,
             'category' => $request->category,
-            'quantity_of_product' => $request->quantity_of_product,
+            'quantity_of_product' => intval($request->quantity_of_product),
+            'price' => intval($request->price), 
             'product_characteristics' => $request->product_characteristics,
             'description'=> $request->description,
             'product_image' => "$filename.$ext",
@@ -76,11 +77,12 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(UpdateProductRequest $request, Product $product)
-    {
+    {   
         $product->update([
             'product_name' => $request->product_name,
             'category' => $request->category,
-            'quantity_of_product' => $request->quantity_of_product,
+            'quantity_of_product' => intval($request->quantity_of_product),
+            'price' => intval($request->price),
             'product_characteristics' => $request->product_characteristics,
             'description'=> $request->description,
             'users_raiting' => $request->users_raiting,

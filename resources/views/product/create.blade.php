@@ -30,6 +30,11 @@
                     <input type="number" id="quantity_of_product" name="quantity_of_product"/>
                 </label>
                 <br/>
+                <label for="price">
+                    price
+                    <input type="number" id="price" name="price"/>
+                </label>
+                <br/>
                 <label for="product_characteristics">
                     product_characteristics
                     <input type='text' id="product_characteristics" name="product_characteristics"/>

@@ -39,10 +39,11 @@ class BasketController extends Controller
                         'user_id' => auth()->id(), 
                         'product_id' => $product->id, 
                         'product_name' => $product->product_name,
+                        'price' => $product->price, 
                     ], [
                         'quantity_of_product_buying' => Basket::where('user_id', auth()->id())
                             ->where('product_id', $product->id)
-                            ->where('product_name', $product->product_name)->value('quantity_of_product_buying')
+                            ->where('product_name', $product->product_name)->where('price', $product->price)->value('quantity_of_product_buying')
                              + $request->input('quantity_of_product_buying'),
                     ]
                 );
@@ -58,6 +59,7 @@ class BasketController extends Controller
                         'product_id' => $product->id, 
                         'product_name' => $product->product_name,
                         'quantity_of_product_buying' => $request->input('quantity_of_product_buying'),
+                        'price' => $product->price, 
                     ];
                 }
                 session(['baskets' => $baskets]);

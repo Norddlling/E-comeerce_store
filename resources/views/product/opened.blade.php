@@ -26,6 +26,9 @@
             quantity_of_product: {{ $product->quantity_of_product }} available
         </div>
         <div>
+            price: {{ $product->price }}
+        </div>
+        <div>
             product_characteristics: {{ $product->product_characteristics }}
         </div>
         <div>
