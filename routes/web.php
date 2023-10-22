@@ -51,3 +51,5 @@ Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::post('/basket/store/{product}', [BasketController::class, 'store'])->name('basket.store');
 Route::delete('/basket/delete/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy');
 Route::post('/session/{basket}', [BasketController::class, 'destroySession'])->name('basket.destroySession');
+Route::delete('/basket/buy', [BasketController::class, 'buyProducts'])->name('basket.buyProducts');
+Route::post('/basket/buy', [BasketController::class, 'buyProductsWithoutAuth'])->name('basket.buyProductsWithoutAuth');

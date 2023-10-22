@@ -8,6 +8,7 @@
 </head>
 <body>
     <div>
+        <div>{{ session('shoping_status_message') }}</div>
         <div>
             @if (count(session('baskets', [])) > 0 || $baskets->count() > 0)
                 @if($baskets->count() > 0)
@@ -35,6 +36,13 @@
                                 </form>
                             </div>
                         @endforeach
+                        <div>
+                            <form method="POST" action="{{ route('basket.buyProducts') }}">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Buy"/>
+                            </form>
+                        </div> 
                     @endauth
                 @elseif (count(session('baskets', [])) > 0 && $baskets->count() === 0)
                         @if (!auth()->user())
@@ -60,6 +68,12 @@
                                     <input type="submit" value="Delete from basket"/>
                                 </form>
                             @endforeach
+                            <div>
+                                <form method="POST" action="{{ route('basket.buyProductsWithoutAuth') }}">
+                                    @csrf
+                                    <input type="submit" value="Buy"/>
+                                </form>
+                            </div> 
                         @else
                             <div>Basket is empty</div>
                         @endif
@@ -67,7 +81,7 @@
             @else
                 <div>Basket is empty</div>
             @endif
-        </div>        
+        </div>  
     </div>
 </body>
 </html>

@@ -41,10 +41,12 @@ class BasketController extends Controller
                         'product_name' => $product->product_name,
                         'price' => $product->price, 
                     ], [
-                        'quantity_of_product_buying' => Basket::where('user_id', auth()->id())
-                            ->where('product_id', $product->id)
-                            ->where('product_name', $product->product_name)->where('price', $product->price)->value('quantity_of_product_buying')
-                             + $request->input('quantity_of_product_buying'),
+                            'quantity_of_product_buying' => Basket::where([
+                                ['user_id', auth()->id()],
+                                ['product_id', $product->id],
+                                ['product_name', $product->product_name],
+                                ['price', $product->price],
+                            ])->value('quantity_of_product_buying') + $request->input('quantity_of_product_buying'),
                     ]
                 );
                 return redirect()->back()->with([
@@ -117,5 +119,23 @@ class BasketController extends Controller
         });
         session(['baskets' => $updatedBasket]);
         return back();
+    }
+
+    public function buyProducts ()
+    {
+        $deleteFromBasket = Basket::where('user_id', auth()->id())->delete();
+        return redirect()->back()->with([
+            'shoping_status_message' => "Success, thank you for your shopping"
+        ]);
+    }
+
+    public function buyProductsWithoutAuth () 
+    {
+        $baskets = session('baskets', []);
+        $baskets = [];
+        session(['baskets' => $baskets]);
+        return redirect()->back()->with([
+            'shoping_status_message' => "Success, thank you for your shopping"
+        ]);
     }
 }
