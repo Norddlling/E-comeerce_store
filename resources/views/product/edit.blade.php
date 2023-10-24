@@ -59,11 +59,6 @@
                     <input type="file" id="product_image" name="product_image" accept="image/*" value="{{ $product->product_image }}"/>
                 </label>
                 <br/>
-                <label for="users_raiting">
-                    users_raiting
-                    <input type="number" id="users_raiting" name="users_raiting" value="{{ $product->users_raiting }}"/>
-                </label>
-                <br/>
                 <input type="submit"/>
             </form>
             <form method="POST" action={{ route('category.update', ['category' => $category->id]) }}>

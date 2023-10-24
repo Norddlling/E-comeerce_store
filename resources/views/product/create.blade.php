@@ -50,11 +50,6 @@
                     <input type="file" id="product_image" name="product_image" accept="image/*"/>
                 </label>
                 <br/>
-                <label for="users_raiting">
-                    users_raiting
-                    <input type="number" id="users_raiting" name="users_raiting"/>
-                </label>
-                <br/>
                 <input type="submit" form="create_product_form"/>
             </form>
 

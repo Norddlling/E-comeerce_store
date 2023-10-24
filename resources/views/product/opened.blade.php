@@ -35,8 +35,39 @@
             description: {{ $product->description }}
         </div>
         <div>
-            users_raiting: {{ $product->users_raiting }}
+            users_raiting: 
         </div>
+
+        @php
+            $averageRating = $product->ratings->avg('users_raiting');
+        @endphp
+
+        <p>Average Rating: {{ $averageRating }} stars</p>
+
+        @if ($averageRating)
+            <div class="ratings">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $averageRating)
+                        <i class="fas fa-star">full</i>
+                    @else
+                        <i class="far fa-star">empty</i>
+                    @endif
+                @endfor
+            </div>
+        @else
+            <i class="fas fa-star">full</i>
+            <i class="fas fa-star">full</i>
+            <i class="fas fa-star">full</i>
+            <i class="far fa-star">empty</i>
+            <i class="far fa-star">empty</i>
+        @endif
+        
+        <form method="POST" action="{{ route('product.rateProduct', ['product' => $product]) }}">
+            @csrf
+            <input type="number" min="0" max="5" id="users_raiting" name="users_raiting"/>
+            <input type="submit" value="rate prodduct"/>
+        </form>
+
         <form method="POST" action="{{ route('basket.store', ['product' => $product]) }}">
             @csrf
             <input 

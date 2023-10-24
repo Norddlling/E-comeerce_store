@@ -50,7 +50,6 @@ class ProductController extends Controller
             'product_characteristics' => $request->product_characteristics,
             'description'=> $request->description,
             'product_image' => "$filename.$ext",
-            'users_raiting' => $request->users_raiting,
         ]);
 
         return redirect()->back()->with(['product_status_message' => "Product $request->product_name created"]);
@@ -85,7 +84,6 @@ class ProductController extends Controller
             'price' => intval($request->price),
             'product_characteristics' => $request->product_characteristics,
             'description'=> $request->description,
-            'users_raiting' => $request->users_raiting,
         ]);
         if ($request->file('product_image')) {
             Storage::disk('public')->delete("/products_images/$product->product_image");

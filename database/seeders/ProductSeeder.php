@@ -22,7 +22,6 @@ class ProductSeeder extends Seeder
                 'product_characteristics' => 'SOC A16 Bionic',
                 'description' => 'New iPhone',
                 'product_image' => 'iphones-7479304_1280.jpg',
-                'users_raiting' => 5,
             ],
 
             [
@@ -33,7 +32,6 @@ class ProductSeeder extends Seeder
                 'product_characteristics' => 'SOC A14 Bionic',
                 'description' => 'New iPad',
                 'product_image' => 'bar-621033_1280.jpg',
-                'users_raiting' => 4,
             ],
         ]);
     }

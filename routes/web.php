@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\RatingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/product/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::patch('/category/edit/{category}', [CategoryController::class, 'update'])->name('category.update');
+});
+
+Route::middleware(['auth',])->group(function () {
+    Route::post('product/rate/{product}', [RatingController::class, 'rateProduct'])->name('product.rateProduct');
 });
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
