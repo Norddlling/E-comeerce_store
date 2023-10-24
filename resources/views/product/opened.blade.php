@@ -70,15 +70,19 @@
 
         <form method="POST" action="{{ route('basket.store', ['product' => $product]) }}">
             @csrf
-            <input 
-                type="number" 
-                id="quantity_of_product_buying" 
-                name="quantity_of_product_buying" 
-                max="{{ $product->quantity_of_product }}" 
-                min="1" 
-                value="1"
-            />
-            <input type="submit"/>
+            @if ($product->quantity_of_product > 0)
+                <input 
+                    type="number" 
+                    id="quantity_of_product_buying" 
+                    name="quantity_of_product_buying" 
+                    max="{{ $product->quantity_of_product }}" 
+                    min="1" 
+                    value="1"
+                />
+                <input type="submit" value="Buy"/>
+            @else
+                Product unavailable
+            @endif
         </form>
     </div>
 </body>
