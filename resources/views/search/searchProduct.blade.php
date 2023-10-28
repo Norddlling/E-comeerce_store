@@ -5,62 +5,56 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div>{{ session('product_status_message') }}</div>
-        @auth
-            @if (auth()->user()->role === 'admin')
-                <div>
-                    <button onclick="window.location='{{ route('product.create') }}'">
-                        Create product
-                    </button>
-                </div>
-            @endif
-        @endauth
-        <div>
-            @foreach ( $categories as  $category )
-                <div class="text-danger">
-                    <a href="{{ route('category.show', $category->category) }}">
-                        {{ $category->category }}
-                    </a>
-                </div>
-            @endforeach
-        </div>
-        <form action="{{ route('search.searchProduct') }}" method="GET">
-
-            <input type="text" name="searched_product" value=""/>
-            <button type="submit">Submit</button>
-        </form>
-        <div>
-            @foreach ( $products as  $product )
-                <div>
-                    <div onclick="window.location='{{ route('product.show', $product) }}'">
-                        <img 
-                            src = "{{ '/storage/products_images/'.$product->product_image }}" 
-                            alt = "{{ $product->product_name }} image" 
-                            width = "300"
-                        />
-                        <div>
-                            {{ $product->product_name }} Price: {{ $product->price }}
-                        </div>
+        <x-app-layout>
+            <div>{{ session('product_status_message') }}</div>
+            @auth
+                @if (auth()->user()->role === 'admin')
+                    <div>
+                        <button onclick="window.location='{{ route('product.create') }}'">
+                            Create product
+                        </button>
                     </div>
-                    @auth
-                        @if (auth()->user()->role === 'admin')
+                @endif
+            @endauth
+            <div>
+                <x-e-shop-front.top-menu :categories="$categories"/>
+                <e-shop-front.category-menu :categories="$categories"/>
+            </div>
+            <div class="container-lg">
+                @foreach ( $products as  $product )
+                    <div class="d-inline-block">
+                        <div onclick="window.location='{{ route('product.show', $product) }}'">
+                            <img 
+                                src = "{{ '/storage/products_images/'.$product->product_image }}" 
+                                alt = "{{ $product->product_name }} image" 
+                                width = "300"
+                            />
                             <div>
-                                <button onclick="window.location='{{ route('product.edit', $product) }}'">
-                                    Edit
-                                </button>
+                                {{ $product->product_name }} Price: {{ $product->price }}
                             </div>
+                        </div>
+                        @auth
+                            @if (auth()->user()->role === 'admin')
+                                <div>
+                                    <button onclick="window.location='{{ route('product.edit', $product) }}'">
+                                        Edit
+                                    </button>
+                                </div>
 
-                            <form action={{ route('product.destroy', $product->id) }} method="POST">
-                                @method('delete')
-                                @csrf
-                                <input type="submit" value="Delete"/>
-                            </form>
-                         @endif
-                    @endauth
-                    </div>
-            @endforeach
-        </div>
+                                <form action={{ route('product.destroy', $product->id) }} method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <input type="submit" value="Delete"/>
+                                </form>
+                            @endif
+                        @endauth
+                        </div>
+                @endforeach
+            </div>
+        </x-app-layout>
     </body>
 </html>

@@ -21,10 +21,10 @@
                 @endif
             @endauth
             <div>
-                <x-e-shop-front.top-menu :categories="$categories" class=""/>
+                <x-e-shop-front.top-menu :categories="$categories"/>
                 <e-shop-front.category-menu :categories="$categories"/>
             </div>
-            <div class="container-fluid">
+            <div class="container-lg">
                 @foreach ( $products as  $product )
                     <div class="d-inline-block">
                         <div onclick="window.location='{{ route('product.show', $product) }}'">
