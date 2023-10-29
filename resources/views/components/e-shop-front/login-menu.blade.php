@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'w-100' ])}}>
+<div {{ $attributes->merge(['class' => 'container-lg' ])}}>
     @if (Route::has('login'))
         <div class="sm:absolute sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth

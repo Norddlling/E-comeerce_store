@@ -6,6 +6,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -79,8 +81,17 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $deletedCategory = Product::where('category', $request->delete_category);
+        $deletedFiles = Product::whereIn('category', [$request->delete_category])->pluck('product_image');
+        foreach($deletedFiles as $filePath) {
+            Storage::disk('public')->delete("/products_images/$filePath");
+        }
+        $deletedCategory->delete();
+        $category->delete();
+        return redirect()->route('product.index')->with([
+            'category_status_message' => "Category $category->category was deleted"
+        ]);
     }
 }

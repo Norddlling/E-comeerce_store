@@ -1,3 +1,3 @@
-<button {{ $attributes->merge(['class' => 'd-inline-block btn btn-primary' ])}}>
+<button {{ $attributes->class('d-inline-block btn btn-primary')}}>
     {{ $slot }}
 </button>

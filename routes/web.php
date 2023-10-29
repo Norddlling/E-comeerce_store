@@ -18,9 +18,7 @@ use App\Http\Controllers\RatingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,6 +38,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::patch('/product/update/{product:product_name}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::patch('/category/edit/{category}', [CategoryController::class, 'update'])->name('category.update');
 });
@@ -48,7 +47,7 @@ Route::middleware(['auth',])->group(function () {
     Route::post('product/rate/{product}', [RatingController::class, 'rateProduct'])->name('product.rateProduct');
 });
 
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::get('/', [ProductController::class, 'index'])->name('product.index');
 Route::get('/products/{category}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('/product/{product:product_name}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/search/product', [SearchController::class, 'findProducts'])->name('search.searchProduct');

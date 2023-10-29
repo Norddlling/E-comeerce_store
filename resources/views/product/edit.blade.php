@@ -80,6 +80,19 @@
                 <br/>
                 <input type="submit"/>
             </form>
+            <form action={{ route('category.destroy', ['category' => $category->id]) }} method="POST">
+                @method('delete')
+                @csrf
+                <select 
+                    id="delete_category" 
+                    name="delete_category"
+                >
+                    @foreach ( $categories as  $category )
+                        <option value="{{ $category->category }}" >{{ $category->category }}</option>
+                    @endforeach
+                </select>
+                <input type="submit" value="Delete category"/>
+            </form>
         </x-app-layout>
     </body>
 </html>
