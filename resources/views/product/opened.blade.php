@@ -48,18 +48,18 @@
             <div class="ratings">
                 @for ($i = 1; $i <= 5; $i++)
                     @if ($i <= $averageRating)
-                        <i class="fas fa-star">full</i>
+                        <i class="fa fa-star"></i>
                     @else
-                        <i class="far fa-star">empty</i>
+                        <i class="fa fa-star-o"></i>
                     @endif
                 @endfor
             </div>
         @else
-            <i class="fas fa-star">full</i>
-            <i class="fas fa-star">full</i>
-            <i class="fas fa-star">full</i>
-            <i class="far fa-star">empty</i>
-            <i class="far fa-star">empty</i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star-0"></i>
+            <i class="far fa-star-0"></i>
         @endif
         
         <form method="POST" action="{{ route('product.rateProduct', ['product' => $product]) }}">

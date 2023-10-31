@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => '' ])}}>
+<div {{ $attributes->merge(['class' => 'shadow' ])}}>
     @foreach ( $categories as  $category )
         <div >
             <a class="category btn btn-primary w-100" href="{{ route('category.show', $category->category) }}">

@@ -10,7 +10,7 @@
             </div>
             <div class="search-menu-block w-100 ">
                 <x-e-shop-front.products-search-field class="d-inline-block"/>
-                <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end py-2 px-4 btn btn-primary">
+                <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end py-2 px-4">
                     <i class="fa fa-shopping-basket"></i>
                 </x-e-shop-front.button>
             </div>

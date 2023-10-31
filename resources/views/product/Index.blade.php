@@ -18,36 +18,8 @@
                 <x-e-shop-front.top-menu :categories="$categories"/>
                 <e-shop-front.category-menu :categories="$categories"/>
             </div>
-            <div class="">
-                @foreach ( $products as  $product )
-                    <div class="d-inline-block">
-                        <div onclick="window.location='{{ route('product.show', $product) }}'">
-                            <img 
-                                src = "{{ '/storage/products_images/'.$product->product_image }}" 
-                                alt = "{{ $product->product_name }} image" 
-                                width = "300"
-                            />
-                            <div>
-                                {{ $product->product_name }} Price: {{ $product->price }}
-                            </div>
-                        </div>
-                        @auth
-                            @if (auth()->user()->role === 'admin')
-                                <div>
-                                    <button onclick="window.location='{{ route('product.edit', $product) }}'">
-                                        Edit
-                                    </button>
-                                </div>
-
-                                <form action={{ route('product.destroy', $product->id) }} method="POST">
-                                    @method('delete')
-                                    @csrf
-                                    <input type="submit" value="Delete"/>
-                                </form>
-                             @endif
-                        @endauth
-                        </div>
-                @endforeach
+            <div>
+                <x-e-shop-front.products-list :products="$products"/>
             </div>
         </x-app-layout>
     </body>
