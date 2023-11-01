@@ -1,6 +1,7 @@
 <div {{ $attributes->merge(['class' => 'container-lg bg-primary rounded-2 mb-3 shadow' ])}}>
+    <x-e-shop-front.website-logo/>
     @if (Route::has('login'))
-        <div class="sm:absolute sm:top-0 sm:right-0 p-6 text-right z-10">
+        <div class="sm:absolute sm:top-0 sm:right-0 p-6 text-right z-10 d-inline-block float-end">
             @auth
                 <a href="{{ url('/dashboard') }}" class="font-semibold hover-text">Dashboard</a>
             @else

@@ -6,8 +6,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         
-        
-        
     </head>
     <body>
         <x-app-layout>
@@ -16,10 +14,12 @@
             </div>
             <div>
                 <x-e-shop-front.top-menu :categories="$categories"/>
-                <e-shop-front.category-menu :categories="$categories"/>
             </div>
             <div>
                 <x-e-shop-front.products-list :products="$products"/>
+            </div>
+            <div>
+                <x-e-shop-front.footer />
             </div>
         </x-app-layout>
     </body>
