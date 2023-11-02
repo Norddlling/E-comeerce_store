@@ -13,14 +13,14 @@
                 </div>
                 <div class="card-body">
                     <div>
-                    <div class="d-inline-block">
-                        <div style="overflow: hidden;">{{ $product->product_name }}</div>
-                        <x-e-shop-front.star-rating :product="$product"/>
-                        <div>Price: {{ $product->price }}</div>
-                    </div> 
-                    <div class="d-inline-block float-end">
-                        <x-e-shop-front.buy-button :product="$product"/>
-                    </div>
+                        <div class="d-inline-block">
+                            <div style="overflow: hidden;">{{ $product->product_name }}</div>
+                            <x-e-shop-front.star-rating :product="$product"/>
+                            <div>Price: {{ $product->price }}</div>
+                        </div> 
+                        <div class="d-inline-block float-end">
+                            <x-e-shop-front.buy-button :product="$product"/>
+                        </div>
                     </div>
                     <div class="text-secondary mt-1">
                         @auth

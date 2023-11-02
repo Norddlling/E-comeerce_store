@@ -8,15 +8,15 @@
     </div>
     
     <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
+    <div class="carousel-inner rounded-2 shadow">
       <div class="carousel-item active">
-        <img src="/storage/promo_images/top-promo/sale-1.jpg" alt="Sale 1" class="d-block rounded-2" style="max-height: 100%;">
+        <img src="/storage/promo_images/top-promo/sale-1.jpg" alt="Sale 1" class=" rounded-2 w-100" >
       </div>
       <div class="carousel-item">
-        <img src="/storage/promo_images/top-promo/sale-2.jpg" alt="Sale 2" class="d-block rounded-2" style="max-height: 100%;">
+        <img src="/storage/promo_images/top-promo/sale-2.jpg" alt="Sale 2" class=" rounded-2 w-100" >
       </div>
       <div class="carousel-item">
-        <img src="/storage/promo_images/top-promo/sale-3.jpg" alt="Sale 3" class="d-block rounded-2" style="max-height: 100%;">
+        <img src="/storage/promo_images/top-promo/sale-3.jpg" alt="Sale 3" class=" rounded-2 w-100" >
       </div>
     </div>
     
