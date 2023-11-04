@@ -11,16 +11,12 @@
             <div>
                 {{ session('product_status_message') }}
             </div>
-            <div>
+            <section>
                 <x-e-shop-front.top-menu :categories="$categories"/>
-                <e-shop-front.category-menu :categories="$categories"/>
-            </div>
-            <div>
+            </section>
+            <section>
                 <x-e-shop-front.categorized-products-list :products="$products" :category="$category"/>
-            </div>
-            <div>
-                <x-e-shop-front.footer />
-            </div>
+            </section>
         </x-app-layout>
     </body>
 </html>

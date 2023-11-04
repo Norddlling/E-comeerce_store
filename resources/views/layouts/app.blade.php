@@ -20,29 +20,36 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased container-lg">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @auth()
-                @include('layouts.navigation')
-            @endauth
-            @if (!Auth::user())
-                <x-e-shop-front.login-menu/>
-            @endif
+    <body class="font-sans antialiased container-lg " >
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 position-relative ">
+            <header>
+                @auth()
+                    @include('layouts.navigation')
+                @endauth
+                @if (!Auth::user())
+                    <x-e-shop-front.login-menu/>
+                @endif
+            </header>
 
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
+            <main class="main">
                 {{ $slot }}
             </main>
+            
+            <footer class="position-absolute bottom-0 w-100" >
+                <x-e-shop-front.footer class=""/>
+            </footer>
         </div>
     </body>
 </html>
+
+<style>
+    .main {
+        padding-bottom: 80px;
+    }
+
+    @media screen and (max-width: 610px) {
+        .main {
+            padding-bottom: 100px;
+        }
+    }
+</style>

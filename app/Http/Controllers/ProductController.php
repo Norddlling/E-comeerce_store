@@ -60,7 +60,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.opened', ['product' => $product]);
+        $categories = Category::all();
+        return view('product.opened', ['product' => $product, 'categories' => $categories]);
     }
 
     /**

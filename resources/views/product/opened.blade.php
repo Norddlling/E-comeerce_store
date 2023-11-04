@@ -7,13 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
+    <x-app-layout>
         <div>{{ session('basket_status_message') }}</div>
+        <section>
+            <x-e-shop-front.opened-top-menu :categories="$categories" />
+        </section>
         <div>
             <img 
                 src = "{{ '/storage/products_images/'.$product->product_image }}" 
                 alt = "{{ $product->product_name }} image" 
                 width = "300"
+                style="width: 60%;"
             />
         </div>
         <div>
@@ -34,33 +38,10 @@
         <div>
             description: {{ $product->description }}
         </div>
+
         <div>
-            users_raiting: 
+            <x-e-shop-front.star-rating :product="$product"/>
         </div>
-
-        @php
-            $averageRating = $product->ratings->avg('users_raiting');
-        @endphp
-
-        <p>Average Rating: {{ $averageRating }} stars</p>
-
-        @if ($averageRating)
-            <div class="ratings">
-                @for ($i = 1; $i <= 5; $i++)
-                    @if ($i <= $averageRating)
-                        <i class="fa fa-star"></i>
-                    @else
-                        <i class="fa fa-star-o"></i>
-                    @endif
-                @endfor
-            </div>
-        @else
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="far fa-star-0"></i>
-            <i class="far fa-star-0"></i>
-        @endif
         
         <form method="POST" action="{{ route('product.rateProduct', ['product' => $product]) }}">
             @csrf
@@ -84,6 +65,6 @@
                 Product unavailable
             @endif
         </form>
-    </div>
+    </x-app-layout>
 </body>
 </html>
