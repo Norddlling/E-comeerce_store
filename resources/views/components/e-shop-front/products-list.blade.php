@@ -1,4 +1,4 @@
-<div class="m-2">
+<div {{ $attributes->merge(['class' => '' ])}}>
     @foreach ( $products as  $product )
         <div class="d-inline-block card m-1 poduct-card shadow">
             <div onclick="window.location='{{ route('product.show', $product) }}'" >

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Rating;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
@@ -61,7 +62,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $categories = Category::all();
-        return view('product.opened', ['product' => $product, 'categories' => $categories]);
+        $ratings = Rating::all();
+        return view('product.opened', ['product' => $product, 'categories' => $categories, 'ratings' => $ratings,]);
     }
 
     /**

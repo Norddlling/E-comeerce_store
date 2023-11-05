@@ -1,4 +1,4 @@
-<div class="m-2 d-flex opened-menu">
+<div {{ $attributes->merge(['class' => 'mb-2 d-flex opened-menu' ])}}>
     <nav>
         <x-e-shop-front.opened-product-category-menu :categories="$categories"/>
     </nav>

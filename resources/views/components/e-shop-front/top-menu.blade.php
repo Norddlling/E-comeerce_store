@@ -1,4 +1,4 @@
-<div class="container-lg">
+<div {{ $attributes->merge(['class' => '' ])}}>
     <div class="top-menu d-flex position-relative">
         <nav class="categories-block">
             <x-e-shop-front.category-menu :categories="$categories" class="category-menu"/>

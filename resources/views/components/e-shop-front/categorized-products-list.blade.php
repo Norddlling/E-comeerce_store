@@ -1,4 +1,4 @@
-<div class="m-2">
+<div {{ $attributes->merge(['class' => '' ])}}>
     @foreach ( $products as  $product )
         @if ($product->category === $category)
         <div class="d-inline-block card m-1 poduct-card shadow">

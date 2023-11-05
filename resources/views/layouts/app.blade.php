@@ -32,7 +32,9 @@
             </header>
 
             <main class="main">
+                <div class="p-2">
                 {{ $slot }}
+                </div>
             </main>
             
             <footer class="position-absolute bottom-0 w-100" >
@@ -44,12 +46,12 @@
 
 <style>
     .main {
-        padding-bottom: 80px;
+        padding-bottom: 70px;
     }
 
     @media screen and (max-width: 610px) {
         .main {
-            padding-bottom: 100px;
+            padding-bottom: 95px;
         }
     }
 </style>

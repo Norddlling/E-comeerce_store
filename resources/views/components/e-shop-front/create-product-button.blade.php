@@ -1,4 +1,4 @@
-<div>
+<div {{ $attributes->merge(['class' => '' ])}}>
     @auth
         @if (auth()->user()->role === 'admin')
             <div >

@@ -1,4 +1,4 @@
-<div style="color: rgb(255, 191, 0);">
+<div style="color: rgb(255, 191, 0);" {{ $attributes->merge(['class' => '' ])}}>
     @php
         $averageRating = $product->ratings->avg('users_raiting');
     @endphp
