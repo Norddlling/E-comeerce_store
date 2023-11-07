@@ -1,17 +1,17 @@
 <div {{ $attributes->merge(['class' => '' ])}}>
     @foreach ( $products as  $product )
-        <div class="d-inline-block card m-1 poduct-card shadow">
+        <div class="d-inline-block card m-1 poduct-card shadow" >
             <div onclick="window.location='{{ route('product.show', $product) }}'" >
-                <div class="product-image-div">
-                <img 
-                    src = "{{ '/storage/products_images/'.$product->product_image }}" 
-                    alt = "{{ $product->product_name }} image" 
-                    width="300"
-                    height="200"
-                    class="card-img-top image rounded-2 product-image"
-                />
+                <div class="product-image-div" >
+                    <img 
+                        src = "{{ '/storage/products_images/'.$product->product_image }}" 
+                        alt = "{{ $product->product_name }} image" 
+                        width="300"
+                        height="200"
+                        class="card-img-top image rounded-2 product-image"
+                    />
                 </div>
-                <div class="card-body">
+                <div class="card-body" >
                     <div>
                         <div class="d-inline-block">
                             <div style="overflow: hidden;">{{ $product->product_name }}</div>
@@ -22,36 +22,39 @@
                             <x-e-shop-front.buy-button :product="$product"/>
                         </div>
                     </div>
-                    <div class="text-secondary mt-1">
-                        @auth
-                            @if (auth()->user()->role === 'admin')
-                                <div class="d-inline-block">
-                                    <button 
-                                        onclick="window.location='{{ route('product.edit', $product) }}'" 
-                                        data-bs-toggle="tooltip" 
-                                        data-bs-placement="right" 
-                                        title="Eedit pdoduct">
-                                        <i class="material-icons admin-icon-hover">edit</i>
-                                    </button>
-                                </div>
-
-                                <div class="d-inline-block float-end">
-                                    <form action={{ route('product.destroy', $product->id) }} method="POST">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit"
-                                        data-bs-toggle="tooltip" 
-                                        data-bs-placement="left"
-                                        title="Delete pdoduct">
-                                            <i class="material-icons admin-icon-hover">delete</i>
-                                        </button>
-                                    </form>
-                                </div>
-                            @endif
-                        @endauth
-                    </div>
+                    
                 </div>
             </div>
+
+            @auth
+                @if (auth()->user()->role === 'admin')
+                    <div class="text-secondary mt-1 card-footer">
+                        <div class="d-inline-block">
+                            <button 
+                                onclick="window.location='{{ route('product.edit', $product) }}'" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                title="Eedit pdoduct">
+                                <i class="material-icons admin-icon-hover">edit</i>
+                            </button>
+                        </div>
+
+                        <div class="d-inline-block float-end">
+                            <form action={{ route('product.destroy', $product->id) }} method="POST">
+                                @method('delete')
+                                @csrf
+                                <button type="submit"
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="left"
+                                title="Delete pdoduct">
+                                    <i class="material-icons admin-icon-hover">delete</i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
+            @endauth
+
         </div>
     @endforeach
 </div>

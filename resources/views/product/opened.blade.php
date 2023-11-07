@@ -22,10 +22,10 @@
         </div>
 
         <div>
-            product_characteristics: {{ $product->product_characteristics }}
+            characteristics: {!! html_entity_decode($product->product_characteristics) !!}
         </div>
         <div>
-            description: {{ $product->description }}
+            description: {!! html_entity_decode($product->$product->description) !!}
         </div>
 
         

@@ -4,51 +4,52 @@
 
         @auth
             @foreach ($ratings as $rating)
-                @if($rating->product_id === $product->id && $rating->user_id === auth()->user()->id)
+                @if($rating->product_id === $product->id && $rating->user_id === auth()->user()->id) 
                     @php
                         $ratingValue = $rating->users_raiting;
                     @endphp
-                    
-
-                @endif
+                @endif 
             @endforeach
+
+            <div>
+                <fieldset>
+                    <legend>Reate product:</legend>
+                    <div class="rating d-inline-block me-2" style="color: rgb(255, 191, 0);">
+                        @if ( isset($ratingValue) )
+                            @for ($i = 1; $i <= 5 ; $i++)
+                                @if ($i <= $ratingValue)
+                                    <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
+                                    <label for="star{{ $i }}" title="{{ $i }} star">
+                                        <i class="fa fa-star"></i>
+                                    </label>
+                                @else
+                                    <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
+                                    <label for="star{{ $i }}" title="{{ $i }} star">
+                                        <i class="fa fa-star-o"></i>
+                                    </label>
+                                @endif
+                            @endfor
+                        @else
+                            @for ($i = 1; $i <= 5; $i++)
+                                <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
+                                <label for="star{{ $i }}" title="{{ $i }} star">
+                                    <i class="fa fa-star-o"></i>
+                                </label>
+                            @endfor    
+                        @endif
+                    </div>
+        
+                    <div class="d-inline-block">
+                        <x-e-shop-front.button class="btn btn-outline-primary" type="submit">
+                            Submit
+                        </x-e-shop-front.button> 
+                    </div>
+                </fieldset>
+            </div>
+           
         @endauth
 
-        <div>
-            <fieldset>
-            <legend>Reate product:</legend>
-            <div class="rating d-inline-block me-2" style="color: rgb(255, 191, 0);">
-                @if ( $ratingValue  )
-                    @for ($i = 1; $i <= 5 ; $i++)
-                        @if ($i <= $ratingValue)
-                            <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
-                            <label for="star{{ $i }}" title="{{ $i }} star">
-                                <i class="fa fa-star"></i>
-                            </label>
-                        @else
-                            <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
-                            <label for="star{{ $i }}" title="{{ $i }} star">
-                                <i class="fa fa-star-o"></i>
-                            </label>
-                        @endif
-                    @endfor
-                @else
-                    @for ($i = 1; $i <= 5; $i++)
-                        <input type="radio" id="star{{ $i }}" name="users_raiting" value="{{ $i }}" style="display: none">
-                        <label for="star{{ $i }}" title="{{ $i }} star">
-                            <i class="fa fa-star-o"></i>
-                        </label>
-                    @endfor    
-                @endif
-            </div>
-
-            <div class="d-inline-block">
-                <x-e-shop-front.button class="btn btn-outline-primary" type="submit">
-                    Submit
-                </x-e-shop-front.button> 
-            </div>
-            </fieldset>
-        </div>
+       
     </form>
 </div>
 

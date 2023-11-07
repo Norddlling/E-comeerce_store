@@ -15,11 +15,11 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                'product_name' => 'Apple iPhone 15', 
+                'product_name' => 'Apple iPhone 15 Pro', 
                 'category' => 'Phones', 
                 'quantity_of_product' => 10,
                 'price' => 899, 
-                'product_characteristics' => 'SOC A16 Bionic',
+                'product_characteristics' => 'SOC A17',
                 'description' => 'New iPhone',
                 'product_image' => 'iphones-7479304_1280.jpg',
             ],
@@ -29,8 +29,8 @@ class ProductSeeder extends Seeder
                 'category' => 'Tablets', 
                 'quantity_of_product' => 10,
                 'price' => 499, 
-                'product_characteristics' => 'SOC A14 Bionic',
-                'description' => 'New iPad',
+                'product_characteristics' => nl2br('SOC A14 Bionic'),
+                'description' => nl2br('New iPad'),
                 'product_image' => 'bar-621033_1280.jpg',
             ],
         ]);
