@@ -33,7 +33,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $categories = Category::create([
-            'category'=> $request->created_category,
+            'category'=> e($request->created_category),
         ]);
 
         return redirect()->back();
@@ -67,10 +67,10 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $updatedCategory = Product::where('category', $request->edit_category)->update([
-            'category' => $request->changed_category
+            'category' => e($request->changed_category)
         ]);
         $category->update([
-            'category' => $request->changed_category
+            'category' => e($request->changed_category)
         ]);
 
         return redirect()->back()->with([

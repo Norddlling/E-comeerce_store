@@ -37,12 +37,14 @@
                 <br/>
                 <label for="product_characteristics">
                     product_characteristics
-                    <input type='text' id="product_characteristics" name="product_characteristics"/>
+                    <textarea id="product_characteristics" name="product_characteristics">
+                    </textarea>
                 </label>
                 <br/>
                 <label for="description">
                     description
-                    <input type='text' id="description" name="description"/>
+                    <textarea id="description" name="description">
+                    </textarea>
                 </label>
                 <br/>
                 <label for="product_image">

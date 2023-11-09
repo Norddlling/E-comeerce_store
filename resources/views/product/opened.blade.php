@@ -15,22 +15,9 @@
         <div>
             <x-e-shop-front.opened-product-top-description :product="$product"  :ratings="$ratings"/>
         </div>
-
-
         <div>
-            category: {{ $product->category }}
+            <x-e-shop-front.opened-product-bottom-description :product="$product"/>
         </div>
-
-        <div>
-            characteristics: {!! html_entity_decode($product->product_characteristics) !!}
-        </div>
-        <div>
-            description: {!! html_entity_decode($product->$product->description) !!}
-        </div>
-
-        
-
-
     </x-app-layout>
 </body>
 </html>

@@ -44,13 +44,13 @@ class ProductController extends Controller
         Storage::disk('public')->put($path, $file);
 
         $product = Product::create([
-            'product_name' => $request->product_name,
-            'category' => $request->category,
-            'quantity_of_product' => intval($request->quantity_of_product),
-            'price' => intval($request->price), 
-            'product_characteristics' => $request->product_characteristics,
-            'description'=> $request->description,
-            'product_image' => "$filename.$ext",
+            'product_name' => e($request->product_name),
+            'category' => e($request->category),
+            'quantity_of_product' => intval(e($request->quantity_of_product)),
+            'price' => intval(e($request->price)), 
+            'product_characteristics' => e($request->product_characteristics),
+            'description'=> e($request->description),
+            'product_image' => e("$filename.$ext"),
         ]);
 
         return redirect()->back()->with(['product_status_message' => "Product $request->product_name created"]);
@@ -81,12 +81,12 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {   
         $product->update([
-            'product_name' => $request->product_name,
-            'category' => $request->category,
-            'quantity_of_product' => intval($request->quantity_of_product),
-            'price' => intval($request->price),
-            'product_characteristics' => $request->product_characteristics,
-            'description'=> $request->description,
+            'product_name' => e($request->product_name),
+            'category' => e($request->category),
+            'quantity_of_product' => intval(e($request->quantity_of_product)),
+            'price' => intval(e($request->price)),
+            'product_characteristics' => e($request->product_characteristics),
+            'description'=> e($request->description),
         ]);
         if ($request->file('product_image')) {
             Storage::disk('public')->delete("/products_images/$product->product_image");
@@ -96,7 +96,7 @@ class ProductController extends Controller
             $file = file_get_contents($request->file('product_image'));
             Storage::disk('public')->put($path, $file);
             $product->update([
-                'product_image' => "$filename.$ext",
+                'product_image' => e("$filename.$ext"),
             ]);
         }
 
