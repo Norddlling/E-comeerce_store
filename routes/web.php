@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/admin_panel', [ProductController::class, 'create'])->name('product.create');
     Route::get('/product/edit/{product:product_name}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::patch('/product/update/{product:product_name}', [ProductController::class, 'update'])->name('product.update');

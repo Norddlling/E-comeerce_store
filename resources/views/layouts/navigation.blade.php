@@ -14,11 +14,11 @@
 
             <div class="flex items-center">
                 <x-e-shop-front.create-product-button/>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <!--<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-hover">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
+                </div>-->
             </div>
 
             <!-- Settings Dropdown -->

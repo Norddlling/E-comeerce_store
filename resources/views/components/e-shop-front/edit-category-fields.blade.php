@@ -50,7 +50,7 @@
                             <option value="{{ $category->category }}" >{{ $category->category }}</option>
                         @endforeach
                     </select>
-                    <input type="submit" class="btn btn-outline-primary form control" value="Delete category"/>
+                    <input type="submit" class="btn btn-outline-primary form-control" value="Delete category"/>
                     
                 </div>
             </fieldset>

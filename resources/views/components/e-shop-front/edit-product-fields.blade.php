@@ -42,7 +42,6 @@
                     class="form-control rounded-end border"
                     aria-label="product_name"
                     value="{{ $product->product_name }}"
-                    
                 />
             </x-e-shop-front.input-group>
 

@@ -7,7 +7,7 @@
                     type="button" 
                     class="btn btn-light bg-light text-secondary shadow">
                     <i class="fa fa-plus"></i> 
-                    Create product
+                    Admin panel
                 </button>
             </div>
         @endif
