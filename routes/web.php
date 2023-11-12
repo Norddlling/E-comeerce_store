@@ -40,7 +40,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/product/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     Route::delete('/category/delete/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::patch('/category/edit/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::patch('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
 });
 
 Route::middleware(['auth',])->group(function () {
