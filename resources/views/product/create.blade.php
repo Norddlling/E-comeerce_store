@@ -8,8 +8,8 @@
     </head>
     <body>
         <x-app-layout>
+            <div>{{ session('product_status_message') }}</div>
             <div class="admin-panel-container">
-                <div>{{ session('product_status_message') }}</div>
                 <section class="admin-panel-section">
                     <form method="POST" action={{ route('product.store') }} enctype="multipart/form-data" id="create_product_form">
                         @csrf

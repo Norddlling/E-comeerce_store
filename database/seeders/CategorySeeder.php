@@ -27,7 +27,7 @@ class CategorySeeder extends Seeder
             ],
 
             [
-                'category' => 'Desctops',
+                'category' => 'Desktops',
             ],
 
             [
