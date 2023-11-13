@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('product.Index', ['products' => $products, 'categories' => $categories]);
+        return view('product.index', ['products' => $products, 'categories' => $categories]);
     }
 
     /**
