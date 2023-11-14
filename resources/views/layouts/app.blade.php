@@ -24,7 +24,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased container-lg " >
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900 position-relative ">
+        <div class="min-h-screen position-relative ">
             <header>
                 @auth()
                     @include('layouts.navigation')
