@@ -4,12 +4,12 @@
             <x-e-shop-front.category-menu :categories="$categories" class="category-menu"/>
         </nav>
         <section class="d-flex flex-column w-100 ">
-            <section class="search-menu-block ">
+            <section class="search-menu-block d-flex d-flex justify-content-between">
                 <x-e-shop-front.products-search-field class="d-inline-block"/>
                 <x-e-shop-front.button 
                     type="button"
                     onclick="window.location='{{ route('basket.index') }}'" 
-                    class="float-end btn btn-primary  py-2 px-4">
+                    class="btn btn-primary  py-2 px-4">
                     <i class="fa fa-shopping-basket"></i>
                 </x-e-shop-front.button>            
             </section>
