@@ -6,11 +6,14 @@
         <section class="d-flex flex-column w-100 ">
             <section class="search-menu-block ">
                 <x-e-shop-front.products-search-field class="d-inline-block"/>
-                <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end btn btn-prime py-2 px-4">
+                <x-e-shop-front.button 
+                    type="button"
+                    onclick="window.location='{{ route('basket.index') }}'" 
+                    class="float-end btn btn-primary  py-2 px-4">
                     <i class="fa fa-shopping-basket"></i>
                 </x-e-shop-front.button>            
             </section>
-            <nav class="">
+            <nav >
                 <x-e-shop-front.mobile-category-menu :categories="$categories" class="mobile-category-menu mt-2 mb-1"/>
             </nav>
             <section class="d-flex justify-content-center align-items-center h-100 m-2">

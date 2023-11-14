@@ -8,7 +8,7 @@
                 id="quantity_of_product_buying" 
                 name="quantity_of_product_buying" 
             />
-            <x-e-shop-front.button type="submit" class="btn btn-outline-primary">
+            <x-e-shop-front.button type="submit" class="">
                 <i class="material-icons pt-1">add_shopping_cart</i>
             </x-e-shop-front.button>
         @else

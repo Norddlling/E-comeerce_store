@@ -1,7 +1,7 @@
 <div {{ $attributes->merge(['class' => 'dropdown' ])}}>
-    <x-e-shop-front.button class="dropdown-toggle shadow py-2 mb-1 opened-cetagory-menu" data-bs-toggle="dropdown">
+    <button class="dropdown-toggle btn btn-primary shadow py-2 mb-1 opened-cetagory-menu" data-bs-toggle="dropdown">
       Product Categories
-    </x-e-shop-front.button>
+    </button>
     <ul class="dropdown-menu p-0 bg-primary rounded-2 shadow opened-cetagory-menu" style="overflow: hidden;">
         @foreach ( $categories as  $category )
             <li> 
