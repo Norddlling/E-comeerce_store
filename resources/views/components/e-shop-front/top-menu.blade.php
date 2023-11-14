@@ -39,7 +39,6 @@
 
     @media screen and (max-width: 768px) {
         .top-menu {
-            
             flex-direction: column-reverse;
         }
 
@@ -49,6 +48,10 @@
 
         .search-menu-block {
             padding-left: 0px;
+        }
+
+        .search-menu-block {
+            min-width: 150px;
         }
     }
     @media screen and (min-width: 768px) {
