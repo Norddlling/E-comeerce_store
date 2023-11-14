@@ -51,7 +51,13 @@
         }
 
         .search-menu-block {
-            min-width: 150px;
+            width: 150px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .search-menu-block {
+            width: 150px;
         }
     }
     @media screen and (min-width: 768px) {
