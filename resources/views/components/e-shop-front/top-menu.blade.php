@@ -6,7 +6,7 @@
         <section class="d-flex flex-column w-100 ">
             <section class="search-menu-block ">
                 <x-e-shop-front.products-search-field class="d-inline-block"/>
-                <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end py-2 px-4">
+                <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end btn btn-prime py-2 px-4">
                     <i class="fa fa-shopping-basket"></i>
                 </x-e-shop-front.button>            
             </section>
