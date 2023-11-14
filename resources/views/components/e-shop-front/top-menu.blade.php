@@ -51,15 +51,10 @@
         }
 
         .search-menu-block {
-            width: 150px;
+            min-width: 50px;
         }
     }
 
-    @media screen and (max-width: 500px) {
-        .search-menu-block {
-            width: 150px;
-        }
-    }
     @media screen and (min-width: 768px) {
         .mobile-category-menu {
             display: none;
