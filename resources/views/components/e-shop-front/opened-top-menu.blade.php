@@ -2,7 +2,7 @@
     <nav>
         <x-e-shop-front.opened-product-category-menu :categories="$categories"/>
     </nav>
-    <div class="opened-menu-search-basket flex-grow-1">
+    <div class="opened-menu-search-basket flex-grow-1 d-flex justify-content-between">
         <x-e-shop-front.products-search-field class="d-inline-block"/>
         <x-e-shop-front.button onclick="window.location='{{ route('basket.index') }}'" class="float-end py-2 px-4">
             <i class="fa fa-shopping-basket"></i>
