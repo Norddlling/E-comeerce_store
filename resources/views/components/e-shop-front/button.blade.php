@@ -1,3 +1,3 @@
-<button {{ $attributes->class('d-inline-block btn btn-primary shadow')}}>
+<button {{ $attributes->class('d-inline-block shadow')}}>
     {{ $slot }}
 </button>
