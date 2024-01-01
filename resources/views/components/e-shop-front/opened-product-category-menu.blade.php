@@ -23,7 +23,7 @@
         background-color: rgb(21, 74, 200);
     }
 
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 768px) {
         .opened-cetagory-menu {
             width: 100%;
             text-align: center;
