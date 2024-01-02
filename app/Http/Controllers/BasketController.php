@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Basket;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,12 @@ class BasketController extends Controller
     {
         $baskets = Basket::where('user_id', auth()->id())->get();
         $products = Product::all();
-        return view('basket.userBasket', ['baskets' => $baskets, 'products' => $products]);
+        $categories = Category::all();
+        return view('basket.userBasket', [
+            'baskets' => $baskets, 
+            'products' => $products,
+            'categories' => $categories
+        ]);
     }
 
     /**

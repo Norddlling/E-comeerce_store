@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<x-app-layout>
     <div>
+        <section>
+            <x-e-shop-front.opened-top-menu :categories="$categories">
+                <div></div>
+            </x-e-shop-front.opened-top-menu>
+        </section>
         <div>{{ session('shoping_status_message') }}</div>
         <div>
             @if (count(session('baskets', [])) > 0 || $baskets->count() > 0)
@@ -16,23 +13,25 @@
                         @foreach ($baskets as $basket)
                             <div>
                                 {{ $basket->product_name }} Price: {{ $basket->price }}
-                                <input
-                                    type="number"
-                                    name="quantity_of_products_in_basket"
-                                    min="1"
-                                    @foreach ($products as $product)
-                                        @if($product->product_name === $basket->product_name) 
-                                            max="{{ $product->quantity_of_product }}"
-                                        @else 
-                                            max="1"                            
-                                        @endif
-                                    @endforeach
-                                    value="{{ $basket->quantity_of_product_buying }}"
-                                />
-                                <form method="POST" action="{{ route('basket.destroy', $basket->id) }}">
+                                <div class="d-inline-block">
+                                    <input
+                                        type="number"
+                                        name="quantity_of_products_in_basket"
+                                        min="1"
+                                        @foreach ($products as $product)
+                                            @if($product->product_name === $basket->product_name) 
+                                                max="{{ $product->quantity_of_product }}"
+                                            @else 
+                                                max="1"                            
+                                            @endif
+                                        @endforeach
+                                        value="{{ $basket->quantity_of_product_buying }}"
+                                    />
+                                </div>
+                                <form method="POST" action="{{ route('basket.destroy', $basket->id) }}" class="d-inline-block">
                                     @method('delete')
                                     @csrf
-                                    <input type="submit" value="Delete from basket"/>
+                                    <input type="submit" value="Delete from basket" class="btn btn-outline-primary"/>
                                 </form>
                             </div>
                         @endforeach
@@ -40,38 +39,40 @@
                             <form method="POST" action="{{ route('basket.buyProducts') }}">
                                 @csrf
                                 @method('delete')
-                                <input type="submit" value="Buy"/>
+                                <input type="submit" value="Buy all" class="btn btn-outline-primary"/>
                             </form>
                         </div> 
                     @endauth
                 @elseif (count(session('baskets', [])) > 0 && $baskets->count() === 0)
                         @if (!auth()->user())
-                            @foreach(session('baskets', []) as $sessionBasket)    
+                            @foreach(session('baskets', []) as $sessionBasket)
                                 <div>
-                                    {{ $sessionBasket['product_name'] }} Price: {{ $sessionBasket['price'] }}
-                                    <input
-                                        type="number"
-                                        name="quantity_of_products_in_sessionBasket"
-                                        min="1"
-                                        @foreach ($products as $product)
-                                            @if($product->product_name === $sessionBasket['product_name']) 
-                                                max="{{ $product->quantity_of_product }}"
-                                            @else 
-                                                max="1"                            
-                                            @endif
-                                        @endforeach
-                                        value="{{ $sessionBasket['quantity_of_product_buying'] }}"
-                                />
+                                    <div class="d-inline-block">
+                                        {{ $sessionBasket['product_name'] }} Price: {{ $sessionBasket['price'] }}
+                                        <input
+                                            type="number"
+                                            name="quantity_of_products_in_sessionBasket"
+                                            min="1"
+                                            @foreach ($products as $product)
+                                                @if($product->product_name === $sessionBasket['product_name']) 
+                                                    max="{{ $product->quantity_of_product }}"
+                                                @else 
+                                                    max="1"                            
+                                                @endif
+                                            @endforeach
+                                            value="{{ $sessionBasket['quantity_of_product_buying'] }}"
+                                    />
+                                    </div>
+                                    <form method="POST" action="{{ route('basket.destroySession', $sessionBasket['product_name']) }}" class="d-inline-block">
+                                        @csrf
+                                        <input type="submit" value="Delete from basket" class="btn btn-outline-primary"/>
+                                    </form>
                                 </div>
-                                <form method="POST" action="{{ route('basket.destroySession', $sessionBasket['product_name']) }}">
-                                    @csrf
-                                    <input type="submit" value="Delete from basket"/>
-                                </form>
                             @endforeach
                             <div>
                                 <form method="POST" action="{{ route('basket.buyProductsWithoutAuth') }}">
                                     @csrf
-                                    <input type="submit" value="Buy"/>
+                                    <input type="submit" value="Buy all" class="btn btn-outline-primary"/>
                                 </form>
                             </div> 
                         @else
@@ -83,5 +84,4 @@
             @endif
         </div>  
     </div>
-</body>
-</html>
+</x-app-layout>
