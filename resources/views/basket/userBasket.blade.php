@@ -20,9 +20,7 @@
                                         min="1"
                                         @foreach ($products as $product)
                                             @if($product->product_name === $basket->product_name) 
-                                                max="{{ $product->quantity_of_product }}"
-                                            @else 
-                                                max="1"                            
+                                                max="{{ $product->quantity_of_product }}"                          
                                             @endif
                                         @endforeach
                                         value="{{ $basket->quantity_of_product_buying }}"
@@ -54,10 +52,8 @@
                                             name="quantity_of_products_in_sessionBasket"
                                             min="1"
                                             @foreach ($products as $product)
-                                                @if($product->product_name === $sessionBasket['product_name']) 
-                                                    max="{{ $product->quantity_of_product }}"
-                                                @else 
-                                                    max="1"                            
+                                                @if($product->product_name ===  $sessionBasket['product_name']) 
+                                                    max="{{ $product->quantity_of_product }}"                       
                                                 @endif
                                             @endforeach
                                             value="{{ $sessionBasket['quantity_of_product_buying'] }}"
