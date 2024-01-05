@@ -11,11 +11,12 @@
                 @if($baskets->count() > 0)
                     @auth
                         @foreach ($baskets as $basket)
-                            <div>
+                            <div class="my-1">
                                 {{ $basket->product_name }} Price: {{ $basket->price }}
                                 <div class="d-inline-block">
                                     <input
                                         type="number"
+                                        class="rounded"
                                         name="quantity_of_products_in_basket"
                                         min="1"
                                         @foreach ($products as $product)
@@ -29,7 +30,7 @@
                                 <form method="POST" action="{{ route('basket.destroy', $basket->id) }}" class="d-inline-block">
                                     @method('delete')
                                     @csrf
-                                    <input type="submit" value="Delete from basket" class="btn btn-outline-primary"/>
+                                    <x-e-shop-front.delete-button/>
                                 </form>
                             </div>
                         @endforeach
@@ -39,16 +40,17 @@
                                 @method('delete')
                                 <input type="submit" value="Buy all" class="btn btn-outline-primary"/>
                             </form>
-                        </div> 
+                        </div>
                     @endauth
                 @elseif (count(session('baskets', [])) > 0 && $baskets->count() === 0)
                         @if (!auth()->user())
                             @foreach(session('baskets', []) as $sessionBasket)
-                                <div>
+                                <div class="my-1">
                                     <div class="d-inline-block">
                                         {{ $sessionBasket['product_name'] }} Price: {{ $sessionBasket['price'] }}
                                         <input
                                             type="number"
+                                            class="rounded"
                                             name="quantity_of_products_in_sessionBasket"
                                             min="1"
                                             @foreach ($products as $product)
@@ -61,7 +63,7 @@
                                     </div>
                                     <form method="POST" action="{{ route('basket.destroySession', $sessionBasket['product_name']) }}" class="d-inline-block">
                                         @csrf
-                                        <input type="submit" value="Delete from basket" class="btn btn-outline-primary"/>
+                                        <x-e-shop-front.delete-button/>
                                     </form>
                                 </div>
                             @endforeach
